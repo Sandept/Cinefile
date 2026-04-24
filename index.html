@@ -1,53 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Cine.dept — Browse & Download Movies</title>
-  <meta name="description" content="Search millions of movies instantly powered by the YTS API. Fast. Beautiful. Free." />
+  <meta name="description"
+    content="Search millions of movies instantly powered by the YTS API. Fast. Beautiful. Free." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
-  <!-- Open Graph / Social Preview Meta Tags -->
-  <meta property="og:title" content="Cine.dept — Browse & Download Movies" />
-  <meta property="og:description" content="Search millions of movies instantly powered by the YTS API. Fast. Beautiful. Free." />
-  <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#000000" />
-
-  <!-- Tailwind CSS CDN (Preflight disabled to preserve existing custom styles) -->
-  <script>
-    // Configure Tailwind BEFORE loading the script
-    window.tailwind = window.tailwind || {};
-    window.tailwindConfig = {
-      corePlugins: {
-        preflight: false // IMPORTANT: Don't reset CSS — preserves all existing styles
-      }
-    };
-  </script>
-  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-  <script>
-    // Apply Tailwind config after script loads
-    if (typeof tailwind !== 'undefined') {
-      tailwind.config = {
-        corePlugins: {
-          preflight: false
-        },
-        theme: {
-          extend: {
-            fontFamily: {
-              montserrat: ['Montserrat', 'sans-serif']
-            }
-          }
-        }
-      };
-    }
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
 
   <!-- Early Theme Setup to prevent Flash of Unstyled Content -->
   <script>
-    const savedTheme = localStorage.getItem('Cine.dept-theme') || 
-                       (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    const savedTheme = localStorage.getItem('Cine.dept-theme') ||
+      (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
     document.documentElement.setAttribute('data-theme', savedTheme);
   </script>
 
@@ -58,57 +26,83 @@
 
     :root {
       /* DEFAULT: iOS System Colors (Dark Mode) */
-      --clr-bg:          #000000;
-      --clr-surface:     #1C1C1E;
-      --clr-surface-2:   #2C2C2E;
-      --clr-surface-3:   #3A3A3C;
-      --clr-border:      rgba(255, 255, 255, 0.15);
-      --clr-nav-bg:      rgba(0, 0, 0, 0.75);
-      
-      --clr-accent:      #0A84FF; /* iOS System Blue */
-      --clr-accent-dim:  rgba(10, 132, 255, 0.15);
-      --clr-red:         #FF453A;
-      --clr-green:       #30D158;
-      --clr-orange:      #FF9F0A;
-      
-      --clr-text:        #FFFFFF;
-      --clr-text-2:      #EBEBF599; /* Secondary */
-      --clr-text-3:      #EBEBF54D; /* Tertiary */
-      --clr-modal-blur:  rgba(0,0,0,0.6);
+      --clr-bg: #000000;
+      --clr-surface: #1C1C1E;
+      --clr-surface-2: #2C2C2E;
+      --clr-surface-3: #3A3A3C;
+      --clr-border: rgba(255, 255, 255, 0.15);
+      --clr-nav-bg: rgba(0, 0, 0, 0.75);
 
-      --ff-main:         'Montserrat', sans-serif;
+      --clr-accent: #0A84FF;
+      /* iOS System Blue */
+      --clr-accent-dim: rgba(10, 132, 255, 0.15);
+      --clr-red: #FF453A;
+      --clr-green: #30D158;
+      --clr-orange: #FF9F0A;
 
-      --radius-sm:       8px;
-      --radius-md:       12px;
-      --radius-lg:       16px;
-      --radius-xl:       24px;
+      --clr-text: #FFFFFF;
+      --clr-text-2: #EBEBF599;
+      /* Secondary */
+      --clr-text-3: #EBEBF54D;
+      /* Tertiary */
+      --clr-modal-blur: rgba(0, 0, 0, 0.6);
 
-      --transition:      0.25s cubic-bezier(0.3, 0.7, 0.4, 1);
+      /* MOVIE OF THE DAY VARS (DARK MODE) */
+      --clr-banner-over-1: rgba(0, 0, 0, 0.4);
+      --clr-banner-over-2: rgba(0, 0, 0, 0.6);
+      --clr-banner-over-3: rgba(0, 0, 0, 0.8);
+      --clr-banner-text: #FFFFFF;
+      --clr-banner-shadow: rgba(0, 0, 0, 0.8);
+      --clr-banner-label: rgba(0, 0, 0, 0.5);
+
+      --ff-main: 'Montserrat', sans-serif;
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+
+      --transition: 0.25s cubic-bezier(0.3, 0.7, 0.4, 1);
     }
 
     /* LIGHT MODE THEME */
     [data-theme="light"] {
-      --clr-bg:          #F2F2F7;
-      --clr-surface:     #FFFFFF;
-      --clr-surface-2:   #E5E5EA;
-      --clr-surface-3:   #D1D1D6;
-      --clr-border:      rgba(0, 0, 0, 0.1);
-      --clr-nav-bg:      rgba(242, 242, 247, 0.85);
-      
-      --clr-accent:      #007AFF;
-      --clr-red:         #FF3B30;
-      --clr-green:       #34C759;
-      --clr-orange:      #FF9500;
-      
-      --clr-text:        #000000;
-      --clr-text-2:      #3C3C43;
-      --clr-text-3:      #8E8E93;
-      --clr-modal-blur:  rgba(0,0,0,0.3);
+      --clr-bg: #F2F2F7;
+      --clr-surface: #FFFFFF;
+      --clr-surface-2: #E5E5EA;
+      --clr-surface-3: #D1D1D6;
+      --clr-border: rgba(0, 0, 0, 0.1);
+      --clr-nav-bg: rgba(242, 242, 247, 0.85);
+
+      --clr-accent: #007AFF;
+      --clr-red: #FF3B30;
+      --clr-green: #34C759;
+      --clr-orange: #FF9500;
+
+      --clr-text: #000000;
+      --clr-text-2: #3C3C43;
+      --clr-text-3: #8E8E93;
+      --clr-modal-blur: rgba(0, 0, 0, 0.3);
+
+      /* MOVIE OF THE DAY VARS (WHITE LIGHT COFFEE SHADE) */
+      --clr-banner-over-1: rgba(247, 243, 238, 0.5);
+      --clr-banner-over-2: rgba(247, 243, 238, 0.85);
+      --clr-banner-over-3: rgba(247, 243, 238, 0.95);
+      --clr-banner-text: #2e2017;
+      --clr-banner-shadow: rgba(255, 255, 255, 0.8);
+      --clr-banner-label: rgba(247, 243, 238, 0.8);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-    
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: var(--ff-main);
@@ -121,28 +115,52 @@
       transition: background-color var(--transition), color var(--transition);
     }
 
-    a { color: var(--clr-accent); text-decoration: none; }
-    button { cursor: pointer; border: none; background: none; font-family: inherit; outline: none; }
-    img { display: block; max-width: 100%; }
+    a {
+      color: var(--clr-accent);
+      text-decoration: none;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-family: inherit;
+      outline: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
 
     /* ── CINEMATIC SPLASH SCREENS (START & END) ── */
     .cinematic-splash {
-      position: fixed; inset: 0;
-      background-color: var(--clr-bg); /* Matches Web Application Background */
+      position: fixed;
+      inset: 0;
+      background-color: var(--clr-bg);
+      /* Matches Web Application Background */
       z-index: 9999;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       overflow: hidden;
       transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s, background-color var(--transition);
     }
+
     .cinematic-splash.hidden {
-      opacity: 0; visibility: hidden; pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
     }
-    
+
     /* Glowing Aurora Effect */
     .splash-aurora {
       position: absolute;
-      top: 50%; left: 50%;
-      width: 150vw; height: 150vh;
+      top: 50%;
+      left: 50%;
+      width: 150vw;
+      height: 150vh;
       transform: translate(-50%, -50%);
       background: radial-gradient(circle at 50% 50%, rgba(10, 132, 255, 0.15), rgba(255, 69, 58, 0.12), transparent 50%);
       filter: blur(60px);
@@ -150,21 +168,35 @@
       z-index: 1;
       pointer-events: none;
     }
+
     .splash-aurora.lock-aurora {
       background: radial-gradient(circle at 50% 50%, rgba(48, 209, 88, 0.15), rgba(10, 132, 255, 0.1), transparent 50%);
     }
+
     @keyframes rotateAurora {
-      0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
-      50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.1); }
-      100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+      0% {
+        transform: translate(-50%, -50%) rotate(0deg) scale(1);
+      }
+
+      50% {
+        transform: translate(-50%, -50%) rotate(180deg) scale(1.1);
+      }
+
+      100% {
+        transform: translate(-50%, -50%) rotate(360deg) scale(1);
+      }
     }
 
     /* Content & Typography */
     .splash-content {
-      position: relative; z-index: 2;
-      display: flex; flex-direction: column; align-items: center;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
     }
+
     .splash-logo-text {
       font-size: clamp(3rem, 10vw, 7rem);
       font-weight: 900;
@@ -177,12 +209,13 @@
       -webkit-text-fill-color: transparent;
       animation: trackingIn 1.5s cubic-bezier(0.2, 0.6, 0.3, 1) both;
     }
+
     .splash-logo-text span {
       font-weight: 900;
       color: var(--clr-accent);
       -webkit-text-fill-color: var(--clr-accent);
     }
-    
+
     .splash-tagline {
       font-size: clamp(0.7rem, 2vw, 1.1rem);
       color: var(--clr-text-2);
@@ -195,29 +228,63 @@
     }
 
     @keyframes trackingIn {
-      0% { letter-spacing: -0.3em; opacity: 0; filter: blur(12px); transform: scale(0.9); }
-      50% { opacity: 0.8; filter: blur(2px); }
-      100% { letter-spacing: 0.1em; opacity: 1; filter: blur(0); transform: scale(1); }
+      0% {
+        letter-spacing: -0.3em;
+        opacity: 0;
+        filter: blur(12px);
+        transform: scale(0.9);
+      }
+
+      50% {
+        opacity: 0.8;
+        filter: blur(2px);
+      }
+
+      100% {
+        letter-spacing: 0.1em;
+        opacity: 1;
+        filter: blur(0);
+        transform: scale(1);
+      }
     }
+
     @keyframes fadeUpTag {
-      0% { opacity: 0; transform: translateY(10px); }
-      100% { opacity: 1; transform: translateY(0); }
+      0% {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* Splash Icon Animation */
     .splash-clap-icon {
-      width: 60px; height: 60px;
+      width: 60px;
+      height: 60px;
       color: var(--clr-text);
       margin-bottom: 20px;
       overflow: visible;
       animation: iconDrop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
     }
+
     .end-splash-icon {
-      color: #30D158; /* Keeps the success green theme for ending */
+      color: #30D158;
+      /* Keeps the success green theme for ending */
     }
+
     @keyframes iconDrop {
-      0% { transform: translateY(-40px) scale(0.8); opacity: 0; }
-      100% { transform: translateY(0) scale(1); opacity: 1; }
+      0% {
+        transform: translateY(-40px) scale(0.8);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
     }
 
     /* Clap Mechanics */
@@ -225,36 +292,68 @@
       transform-origin: 4px 20px;
       animation: clapMainAnim 0.8s infinite ease-in-out;
     }
+
     .clap-group-top {
       transform-origin: 3px 11px;
       animation: clapTopAnim 0.4s infinite ease-in-out;
     }
+
     @keyframes clapMainAnim {
-      0% { transform: rotate(0deg); }
-      20% { transform: rotate(-10deg); }
-      50% { transform: rotate(-10deg); }
-      100% { transform: rotate(0deg); }
+      0% {
+        transform: rotate(0deg);
+      }
+
+      20% {
+        transform: rotate(-10deg);
+      }
+
+      50% {
+        transform: rotate(-10deg);
+      }
+
+      100% {
+        transform: rotate(0deg);
+      }
     }
+
     @keyframes clapTopAnim {
-      0% { transform: rotate(0deg); }
-      30% { transform: rotate(-10deg); }
-      60% { transform: rotate(16deg); }
-      100% { transform: rotate(0deg); }
+      0% {
+        transform: rotate(0deg);
+      }
+
+      30% {
+        transform: rotate(-10deg);
+      }
+
+      60% {
+        transform: rotate(16deg);
+      }
+
+      100% {
+        transform: rotate(0deg);
+      }
     }
 
     /* ── AUTHENTICATION SCREEN ── */
     .auth-screen {
-      position: fixed; inset: 0;
+      position: fixed;
+      inset: 0;
       background-color: var(--clr-bg);
-      z-index: 5000; /* Behind splash, but above main app */
-      display: flex; align-items: center; justify-content: center;
+      z-index: 5000;
+      /* Behind splash, but above main app */
+      display: flex;
+      align-items: center;
+      justify-content: center;
       transition: opacity 0.6s ease, visibility 0.6s ease;
     }
+
     .auth-screen.hidden {
-      opacity: 0; visibility: hidden; pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
     }
 
-    /* Restored Uiverse.io Original Style */ 
+    /* Restored Uiverse.io Original Style */
     .form {
       --input-focus: #2d8cf0;
       --font-color: #323232;
@@ -335,9 +434,10 @@
       color: var(--main-color);
       padding: 4px;
     }
-    
+
     .password-toggle svg {
-      width: 18px; height: 18px;
+      width: 18px;
+      height: 18px;
     }
 
     .auth-feedback {
@@ -373,7 +473,9 @@
     /* ── NAVBAR (iOS Header) ── */
     .navbar {
       position: sticky;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 100;
       padding: 0 20px;
       height: 54px;
@@ -385,36 +487,56 @@
       border-bottom: 0.5px solid transparent;
       transition: border-color var(--transition), background var(--transition);
     }
-    .navbar.scrolled { border-bottom-color: var(--clr-border); }
-    
-    .nav-inner {
-      width: 100%; max-width: 1200px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
+
+    .navbar.scrolled {
+      border-bottom-color: var(--clr-border);
     }
+
+    .nav-inner {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
     .nav-logo {
-      font-weight: 800; font-size: 1.2rem;
+      font-weight: 800;
+      font-size: 1.2rem;
       color: var(--clr-text);
       letter-spacing: -0.5px;
     }
+
     .nav-controls {
-      display: flex; align-items: center; gap: 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
     }
-    
+
     /* ── ANIMATED REFRESH BUTTON ── */
     .refresh-button {
       font-size: 1.2rem;
       color: var(--clr-text);
-      display: flex; align-items: center; justify-content: center;
-      width: 32px; height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       background: var(--clr-surface);
       transition: transform var(--transition);
     }
-    .refresh-button:active { transform: scale(0.9); }
+
+    .refresh-button:active {
+      transform: scale(0.9);
+    }
+
     .refresh-group {
       transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       transform-origin: center;
     }
+
     .refresh-button:hover .refresh-group {
       transform: rotate(-50deg);
     }
@@ -422,95 +544,189 @@
     .theme-toggle {
       font-size: 1.2rem;
       color: var(--clr-text);
-      display: flex; align-items: center; justify-content: center;
-      width: 32px; height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       background: var(--clr-surface);
       transition: transform var(--transition);
     }
-    .theme-toggle:active { transform: scale(0.9); }
-    
+
+    .theme-toggle:active {
+      transform: scale(0.9);
+    }
+
     /* ── THEME ANIMATED ICONS ── */
     .theme-toggle svg {
-      width: 20px; height: 20px;
+      width: 20px;
+      height: 20px;
     }
-    #icon-sun, #icon-moon {
-      display: none; /* Toggled via JS */
+
+    #icon-sun,
+    #icon-moon {
+      display: none;
+      /* Toggled via JS */
     }
-    
+
     /* Moon Wiggle Animation */
     .theme-toggle:hover #icon-moon {
       animation: moonWiggle 1.2s ease-in-out;
     }
+
     @keyframes moonWiggle {
-      0% { transform: rotate(0deg); }
-      20% { transform: rotate(-10deg); }
-      40% { transform: rotate(10deg); }
-      60% { transform: rotate(-5deg); }
-      80% { transform: rotate(5deg); }
-      100% { transform: rotate(0deg); }
+      0% {
+        transform: rotate(0deg);
+      }
+
+      20% {
+        transform: rotate(-10deg);
+      }
+
+      40% {
+        transform: rotate(10deg);
+      }
+
+      60% {
+        transform: rotate(-5deg);
+      }
+
+      80% {
+        transform: rotate(5deg);
+      }
+
+      100% {
+        transform: rotate(0deg);
+      }
     }
 
     /* Sun Rays Fade Animation */
     .theme-toggle:hover .sun-ray {
       animation: rayFade 0.3s backwards;
     }
-    .theme-toggle:hover .sun-ray:nth-of-type(1) { animation-delay: 0.1s; }
-    .theme-toggle:hover .sun-ray:nth-of-type(2) { animation-delay: 0.2s; }
-    .theme-toggle:hover .sun-ray:nth-of-type(3) { animation-delay: 0.3s; }
-    .theme-toggle:hover .sun-ray:nth-of-type(4) { animation-delay: 0.4s; }
-    .theme-toggle:hover .sun-ray:nth-of-type(5) { animation-delay: 0.5s; }
-    .theme-toggle:hover .sun-ray:nth-of-type(6) { animation-delay: 0.6s; }
-    .theme-toggle:hover .sun-ray:nth-of-type(7) { animation-delay: 0.7s; }
-    .theme-toggle:hover .sun-ray:nth-of-type(8) { animation-delay: 0.8s; }
-    
+
+    .theme-toggle:hover .sun-ray:nth-of-type(1) {
+      animation-delay: 0.1s;
+    }
+
+    .theme-toggle:hover .sun-ray:nth-of-type(2) {
+      animation-delay: 0.2s;
+    }
+
+    .theme-toggle:hover .sun-ray:nth-of-type(3) {
+      animation-delay: 0.3s;
+    }
+
+    .theme-toggle:hover .sun-ray:nth-of-type(4) {
+      animation-delay: 0.4s;
+    }
+
+    .theme-toggle:hover .sun-ray:nth-of-type(5) {
+      animation-delay: 0.5s;
+    }
+
+    .theme-toggle:hover .sun-ray:nth-of-type(6) {
+      animation-delay: 0.6s;
+    }
+
+    .theme-toggle:hover .sun-ray:nth-of-type(7) {
+      animation-delay: 0.7s;
+    }
+
+    .theme-toggle:hover .sun-ray:nth-of-type(8) {
+      animation-delay: 0.8s;
+    }
+
     @keyframes rayFade {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
     }
 
     /* ── EXIT BUTTON ANIMATION ── */
     .exit-button {
       font-size: 1.2rem;
       color: var(--clr-text);
-      display: flex; align-items: center; justify-content: center;
-      width: 32px; height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       background: var(--clr-surface);
       transition: transform var(--transition), color var(--transition);
       margin-left: -4px;
     }
-    .exit-button:active { transform: scale(0.9); }
-    .exit-button:hover { color: var(--clr-red); }
+
+    .exit-button:active {
+      transform: scale(0.9);
+    }
+
+    .exit-button:hover {
+      color: var(--clr-red);
+    }
+
     .exit-button:hover .logout-arrow {
       animation: logoutAnim 0.4s ease-in-out;
     }
+
     @keyframes logoutAnim {
-      0% { transform: translateX(0); }
-      50% { transform: translateX(-3px); }
-      100% { transform: translateX(0); }
+      0% {
+        transform: translateX(0);
+      }
+
+      50% {
+        transform: translateX(-3px);
+      }
+
+      100% {
+        transform: translateX(0);
+      }
     }
 
     .nav-badge {
-      display: flex; align-items: center; gap: 6px;
-      font-size: 0.75rem; font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
       color: var(--clr-text-2);
       background: var(--clr-surface);
       padding: 6px 12px;
       border-radius: 99px;
       white-space: nowrap;
     }
+
     .badge-dot {
-      width: 8px; height: 8px; border-radius: 50%; background: var(--clr-text-3); flex-shrink: 0;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--clr-text-3);
+      flex-shrink: 0;
     }
-    .badge-dot.online { background: var(--clr-green); box-shadow: 0 0 6px var(--clr-green); }
-    .badge-dot.offline { background: var(--clr-red); box-shadow: 0 0 6px var(--clr-red); }
+
+    .badge-dot.online {
+      background: var(--clr-green);
+      box-shadow: 0 0 6px var(--clr-green);
+    }
+
+    .badge-dot.offline {
+      background: var(--clr-red);
+      box-shadow: 0 0 6px var(--clr-red);
+    }
 
     /* ── HEADER / HERO ── */
     .hero {
-      max-width: 1200px; margin: 0 auto;
+      max-width: 1200px;
+      margin: 0 auto;
       padding: 24px 20px 0px;
     }
+
     .ios-large-title {
       font-size: 2.2rem;
       font-weight: 800;
@@ -524,6 +740,7 @@
       margin-bottom: 16px;
       width: 100%;
     }
+
     .search-box {
       display: flex;
       align-items: center;
@@ -533,68 +750,106 @@
       gap: 8px;
       border: 1px solid var(--clr-border);
       width: 100%;
-      overflow: hidden; /* Prevent spillover */
+      overflow: hidden;
+      /* Prevent spillover */
     }
-    .search-icon { color: var(--clr-text-2); display: flex; flex-shrink: 0; }
-    
+
+    .search-icon {
+      color: var(--clr-text-2);
+      display: flex;
+      flex-shrink: 0;
+    }
+
     /* CRITICAL FLEX FIX FOR MOBILE: min-width: 0 prevents input from stretching parent */
     .search-input {
       flex: 1;
-      min-width: 0; 
+      min-width: 0;
       width: 100%;
-      background: none; border: none; outline: none;
+      background: none;
+      border: none;
+      outline: none;
       font-family: var(--ff-main);
       font-size: 1rem;
       color: var(--clr-text);
     }
-    .search-input::placeholder { color: var(--clr-text-2); }
-    
+
+    .search-input::placeholder {
+      color: var(--clr-text-2);
+    }
+
     .search-btn {
       color: var(--clr-accent);
       font-weight: 600;
       font-size: 1rem;
       padding: 4px 8px;
-      flex-shrink: 0; /* Never allow search button to shrink/crush */
+      flex-shrink: 0;
+      /* Never allow search button to shrink/crush */
     }
-    .search-btn:active { opacity: 0.6; }
+
+    .search-btn:active {
+      opacity: 0.6;
+    }
 
     /* Suggestions */
     .search-suggestions {
       position: absolute;
-      top: calc(100% + 8px); left: 0; right: 0;
+      top: calc(100% + 8px);
+      left: 0;
+      right: 0;
       background: var(--clr-surface-2);
       border-radius: var(--radius-md);
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
       z-index: 50;
       display: none;
     }
-    .search-suggestions.visible { display: block; }
+
+    .search-suggestions.visible {
+      display: block;
+    }
+
     .suggestion-item {
       padding: 14px 16px;
-      font-size: 0.95rem; font-weight: 500;
+      font-size: 0.95rem;
+      font-weight: 500;
       border-bottom: 0.5px solid var(--clr-border);
       color: var(--clr-text);
-      display: flex; align-items: center; gap: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
-    .suggestion-item:last-child { border-bottom: none; }
-    .suggestion-item:active { background: var(--clr-surface-3); }
+
+    .suggestion-item:last-child {
+      border-bottom: none;
+    }
+
+    .suggestion-item:active {
+      background: var(--clr-surface-3);
+    }
 
     /* ── GENRE PILLS (Scrollable) ── */
     .quick-genres {
-      display: flex; gap: 8px;
+      display: flex;
+      gap: 8px;
       overflow-x: auto;
       padding-bottom: 16px;
-      margin: 0 -20px; padding-left: 20px; padding-right: 20px;
+      margin: 0 -20px;
+      padding-left: 20px;
+      padding-right: 20px;
       scroll-snap-type: x mandatory;
       scroll-padding-left: 20px;
       -webkit-overflow-scrolling: touch;
     }
-    .quick-genres::-webkit-scrollbar { display: none; }
+
+    .quick-genres::-webkit-scrollbar {
+      display: none;
+    }
+
     .genre-pill {
       background: var(--clr-surface);
       color: var(--clr-text);
-      font-size: 0.9rem; font-weight: 600;
+      font-size: 0.9rem;
+      font-weight: 600;
       padding: 8px 16px;
       border-radius: 99px;
       white-space: nowrap;
@@ -603,6 +858,7 @@
       transition: background 0.2s, color 0.2s;
       flex-shrink: 0;
     }
+
     .genre-pill.active {
       background: var(--clr-text);
       color: var(--clr-bg);
@@ -611,170 +867,717 @@
 
     /* ── MAIN CONTENT ── */
     .main-content {
-      max-width: 1200px; margin: 0 auto;
+      max-width: 1200px;
+      margin: 0 auto;
       padding: 10px 20px 40px;
     }
+
     .section-header {
-      display: flex; justify-content: space-between; align-items: flex-end;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
       margin-bottom: 16px;
     }
+
     .section-title {
-      font-size: 1.3rem; font-weight: 700;
+      font-size: 1.3rem;
+      font-weight: 700;
       letter-spacing: -0.5px;
     }
+
     .section-count {
-      font-size: 0.85rem; color: var(--clr-text-2); font-weight: 500;
+      font-size: 0.85rem;
+      color: var(--clr-text-2);
+      font-weight: 500;
     }
 
     /* ── MOVIES GRID ── */
     .movies-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr)); /* Force exactly 2 uniform columns */
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      /* Force exactly 2 uniform columns */
       gap: 16px 12px;
     }
+
     @media (min-width: 600px) {
-      .movies-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+      .movies-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+      }
     }
+
     @media (min-width: 900px) {
-      .movies-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 24px; }
+      .movies-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 24px;
+      }
+    }
+
+    /* ── MOVIE OF THE DAY BANNER ── */
+    .motd-banner {
+      position: relative;
+      width: 100%;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-size: cover;
+      background-position: center;
+      margin: 40px 0;
+      animation: fade-in 0.8s ease;
+    }
+
+    .motd-overlay {
+      position: absolute;
+      inset: 0;
+      /* Seamlessly fades from the app's background color into the poster */
+      background: linear-gradient(to bottom, var(--clr-bg) 0%, var(--clr-banner-over-1) 20%, var(--clr-banner-over-2) 80%, var(--clr-bg) 100%),
+        linear-gradient(to right, var(--clr-banner-over-3) 0%, transparent 50%, var(--clr-banner-over-3) 100%);
+      z-index: 1;
+      transition: background var(--transition);
+    }
+
+    .motd-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 40px 20px;
+      max-width: 800px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .motd-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--clr-banner-text);
+      background: var(--clr-banner-label);
+      padding: 8px 16px;
+      border-radius: 99px;
+      border: 1px solid var(--clr-border);
+      backdrop-filter: blur(10px);
+      margin-bottom: 20px;
+      transition: color var(--transition), background var(--transition);
+    }
+
+    .motd-title {
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 900;
+      color: var(--clr-banner-text);
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+      text-shadow: 0 4px 20px var(--clr-banner-shadow);
+      transition: color var(--transition), text-shadow var(--transition);
+    }
+
+    .motd-sub {
+      font-size: 1.1rem;
+      color: var(--clr-banner-text);
+      margin-bottom: 30px;
+      font-weight: 600;
+      text-shadow: 0 2px 10px var(--clr-banner-shadow);
+      opacity: 0.9;
+      transition: color var(--transition), text-shadow var(--transition);
+    }
+
+    .motd-btn {
+      background: var(--clr-accent);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 14px 36px;
+      border-radius: 99px;
+      transition: transform 0.2s, filter 0.2s;
+      box-shadow: 0 8px 24px rgba(10, 132, 255, 0.4);
+    }
+
+    .motd-btn:active {
+      transform: scale(0.96);
+      filter: brightness(0.9);
     }
 
     /* ── MOVIE CARD ── */
     .movie-card {
-      display: flex; flex-direction: column; gap: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
       cursor: pointer;
     }
-    .movie-card:active .card-poster { transform: scale(0.96); }
-    
+
+    .movie-card:active .card-poster {
+      transform: scale(0.96);
+    }
+
     .card-poster {
-      width: 100%; aspect-ratio: 2/3;
+      width: 100%;
+      aspect-ratio: 2/3;
       border-radius: var(--radius-md);
       object-fit: cover;
       background: var(--clr-surface);
       transition: transform 0.2s ease;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
+
     .card-poster-fallback {
-      width: 100%; aspect-ratio: 2/3;
+      width: 100%;
+      aspect-ratio: 2/3;
       border-radius: var(--radius-md);
       background: var(--clr-surface);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--clr-text-3); font-size: 2rem;
-      text-align: center; padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--clr-text-3);
+      font-size: 2rem;
+      text-align: center;
+      padding: 10px;
     }
-    .card-info { padding: 0 4px; }
+
+    .card-info {
+      padding: 0 4px;
+    }
+
     .card-title {
-      font-size: 0.9rem; font-weight: 600; line-height: 1.2;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      font-size: 0.9rem;
+      font-weight: 600;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       margin-bottom: 2px;
     }
+
     .card-meta {
-      font-size: 0.75rem; color: var(--clr-text-2); font-weight: 500;
+      font-size: 0.75rem;
+      color: var(--clr-text-2);
+      font-weight: 500;
     }
-    .card-rating-inline { color: var(--clr-orange); font-weight: 600; margin-left: 4px; }
+
+    .card-rating-inline {
+      color: var(--clr-orange);
+      font-weight: 600;
+      margin-left: 4px;
+    }
 
     /* ── LOAD MORE ── */
-    .load-more-wrap { display: flex; justify-content: center; margin-top: 32px; }
+    .load-more-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 32px;
+    }
+
     .load-more-btn {
       background: var(--clr-surface);
       color: var(--clr-accent);
-      font-size: 1rem; font-weight: 600;
+      font-size: 1rem;
+      font-weight: 600;
       padding: 14px 32px;
       border-radius: var(--radius-md);
-      width: 100%; max-width: 300px;
+      width: 100%;
+      max-width: 300px;
     }
-    .load-more-btn:active { background: var(--clr-surface-2); }
 
-    /* ── iOS BOTTOM SHEET MODAL ── */
+    .load-more-btn:active {
+      background: var(--clr-surface-2);
+    }
+
+    /* ── TESTIMONIAL MARQUEE ── */
+    .testimonials-section {
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid var(--clr-border);
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .testimonials-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      text-align: center;
+      margin-bottom: 32px;
+      color: var(--clr-text);
+    }
+
+    .marquee-container {
+      --gap: 20px;
+      display: flex;
+      overflow: hidden;
+      user-select: none;
+      gap: var(--gap);
+      /* Fade edges for premium look */
+      mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    }
+
+    .marquee-track {
+      flex-shrink: 0;
+      display: flex;
+      gap: var(--gap);
+      min-width: 100%;
+      animation: scrollMarquee 35s linear infinite;
+    }
+
+    .marquee-container:hover .marquee-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes scrollMarquee {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(calc(-100% - var(--gap)));
+      }
+    }
+
+    .testimonial-card {
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      width: 320px;
+      max-width: 85vw;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      transition: transform var(--transition), background var(--transition);
+      flex-shrink: 0;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      background: var(--clr-surface-2);
+    }
+
+    .t-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .t-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--clr-accent-dim);
+      color: var(--clr-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+
+    .t-user-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .t-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--clr-text);
+      letter-spacing: -0.3px;
+    }
+
+    .t-handle {
+      font-size: 0.8rem;
+      color: var(--clr-text-3);
+      font-weight: 500;
+    }
+
+    .t-stars {
+      color: var(--clr-orange);
+      font-size: 1rem;
+      letter-spacing: 2px;
+    }
+
+    .t-body {
+      font-size: 0.95rem;
+      color: var(--clr-text-2);
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    /* ── TERMINAL / CODE-EDITOR MODAL ── */
     .modal-overlay {
-      position: fixed; inset: 0;
-      z-index: 200;
+      position: fixed;
+      inset: 0;
+      z-index: 5500;
       background: var(--clr-modal-blur);
-      display: flex; flex-direction: column; justify-content: flex-end;
-      opacity: 0; visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      opacity: 0;
+      visibility: hidden;
       transition: opacity var(--transition), visibility var(--transition);
     }
-    .modal-overlay.active { opacity: 1; visibility: visible; }
-    
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
     .modal-card {
       background: var(--clr-bg);
-      width: 100%; max-width: 800px; margin: 0 auto;
-      height: 90vh; /* Bottom sheet height */
-      border-radius: 24px 24px 0 0;
-      overflow-y: auto;
+      width: 100%;
+      max-width: 950px;
+      margin: 0 auto;
+      height: 90vh;
+      border-radius: 16px 16px 0 0;
+      overflow: hidden;
       transform: translateY(100%);
       transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
       position: relative;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--clr-border);
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
     }
-    .modal-overlay.active .modal-card { transform: translateY(0); }
+
+    .modal-overlay.active .modal-card {
+      transform: translateY(0);
+    }
+
     @media (min-width: 800px) {
-      .modal-overlay { justify-content: center; padding: 40px; }
-      .modal-card { height: auto; max-height: 90vh; border-radius: 20px; transform: scale(0.95); opacity: 0;}
-      .modal-overlay.active .modal-card { transform: scale(1); opacity: 1;}
+      .modal-overlay {
+        justify-content: center;
+        padding: 40px;
+      }
+
+      .modal-card {
+        height: auto;
+        max-height: 85vh;
+        border-radius: 12px;
+        transform: scale(0.95);
+        opacity: 0;
+      }
+
+      .modal-overlay.active .modal-card {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
 
-    /* Modal Drag Indicator */
-    .drag-indicator {
-      width: 36px; height: 5px;
-      background: var(--clr-surface-3);
-      border-radius: 3px;
-      margin: 10px auto;
-    }
-    .modal-close-circle {
-      position: absolute; top: 16px; right: 20px; z-index: 10;
-      width: 30px; height: 30px;
+    /* Terminal Header */
+    .editor-header {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
       background: var(--clr-surface-2);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--clr-text-2); font-size: 1.2rem; line-height: 1;
+      border-bottom: 1px solid var(--clr-border);
+      position: relative;
+      z-index: 10;
     }
 
-    /* Modal Content */
-    .modal-header-img {
-      width: 100%; height: 250px;
-      object-fit: cover;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
-      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+    .editor-dots {
+      display: flex;
+      gap: 8px;
     }
-    .modal-content-inner {
-      padding: 0 20px 40px;
-      margin-top: -60px;
-      position: relative; z-index: 2;
-      display: flex; flex-direction: column; align-items: center; text-align: center;
+
+    .editor-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      cursor: pointer;
     }
+
+    .dot-close {
+      background-color: #FF5F56;
+      transition: filter 0.2s;
+    }
+
+    .dot-close:hover {
+      filter: brightness(1.2);
+      box-shadow: 0 0 8px rgba(255, 95, 86, 0.5);
+    }
+
+    .dot-min {
+      background-color: #FFBD2E;
+    }
+
+    .dot-max {
+      background-color: #27C93F;
+    }
+
+    .editor-title {
+      flex: 1;
+      text-align: center;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--clr-text-2);
+      margin-right: 40px;
+      /* Offset to perfectly center */
+    }
+
+    /* Modal Close Button (Top Right) */
+    .editor-close-btn {
+      position: absolute;
+      right: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--clr-surface-3);
+      color: var(--clr-text-2);
+      transition: all 0.2s ease;
+    }
+
+    .editor-close-btn:hover {
+      background: var(--clr-red);
+      color: #fff;
+    }
+
+    .editor-close-btn:active {
+      transform: scale(0.9);
+    }
+
+    /* Terminal Body Split */
+    .editor-body {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    @media (min-width: 800px) {
+      .editor-body {
+        flex-direction: row;
+        overflow: hidden;
+      }
+    }
+
+    .editor-code {
+      background: #111111;
+      /* Always dark for authentic terminal look */
+      color: #A9B7C6;
+      font-family: 'Courier New', Courier, monospace;
+      padding: 24px;
+      font-size: 0.85rem;
+      line-height: 1.7;
+      border-bottom: 1px solid var(--clr-border);
+    }
+
+    .editor-visuals {
+      padding: 24px;
+      background: var(--clr-bg);
+      flex: 1;
+    }
+
+    @media (min-width: 800px) {
+      .editor-code {
+        width: 45%;
+        border-bottom: none;
+        border-right: 1px solid var(--clr-border);
+        overflow-y: auto;
+      }
+
+      .editor-visuals {
+        width: 55%;
+        overflow-y: auto;
+      }
+    }
+
+    /* Syntax Highlighting & Typing Animation */
+    .syn-comment {
+      color: #6A9955;
+      font-style: italic;
+    }
+
+    .syn-keyword {
+      color: #CC7832;
+      font-weight: 600;
+    }
+
+    .syn-key {
+      color: #98C379;
+    }
+
+    .syn-string {
+      color: #6A8759;
+    }
+
+    .syn-number {
+      color: #6897BB;
+    }
+
+    .syn-punct {
+      color: #A9B7C6;
+    }
+
+    .code-line {
+      opacity: 0;
+      transform: translateX(-10px);
+      animation: codeTypeIn 0.3s forwards ease-out;
+      white-space: pre-wrap;
+    }
+
+    .delay-1 {
+      animation-delay: 0.1s;
+    }
+
+    .delay-2 {
+      animation-delay: 0.3s;
+    }
+
+    .delay-3 {
+      animation-delay: 0.5s;
+    }
+
+    .delay-4 {
+      animation-delay: 0.7s;
+    }
+
+    .delay-5 {
+      animation-delay: 0.9s;
+    }
+
+    .delay-6 {
+      animation-delay: 1.1s;
+    }
+
+    .delay-7 {
+      animation-delay: 1.3s;
+    }
+
+    .delay-8 {
+      animation-delay: 1.5s;
+    }
+
+    .delay-9 {
+      animation-delay: 1.7s;
+    }
+
+    .delay-10 {
+      animation-delay: 1.9s;
+    }
+
+    .delay-11 {
+      animation-delay: 2.1s;
+    }
+
+    .delay-12 {
+      animation-delay: 2.3s;
+    }
+
+    @keyframes codeTypeIn {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .typing-cursor {
+      display: inline-block;
+      width: 8px;
+      height: 15px;
+      background-color: #A9B7C6;
+      vertical-align: middle;
+      animation: cursorBlink 1s step-end infinite;
+    }
+
+    @keyframes cursorBlink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    /* Visual Panel Inner Styles */
+    .editor-visual-header {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 600px) {
+      .editor-visual-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .editor-visual-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
     .modal-poster-small {
-      width: 120px; aspect-ratio: 2/3;
+      width: 140px;
+      aspect-ratio: 2/3;
       border-radius: var(--radius-sm);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-      margin-bottom: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      flex-shrink: 0;
     }
+
     .modal-title {
-      font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px;
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
       margin-bottom: 8px;
+      line-height: 1.2;
     }
+
     .modal-meta-row {
-      display: flex; flex-wrap: wrap; justify-content: center; gap: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
       margin-bottom: 16px;
     }
+
     .modal-meta-chip {
       background: var(--clr-surface);
       border: 1px solid var(--clr-border);
       color: var(--clr-text-2);
-      font-size: 0.75rem; font-weight: 600;
-      padding: 4px 10px; border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
     }
+
     .modal-summary {
-      font-size: 0.95rem; line-height: 1.5; color: var(--clr-text-2);
-      text-align: left; width: 100%; margin-top: 16px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--clr-text-2);
+      margin-bottom: 24px;
     }
+
     .trailer-btn {
-      display: inline-flex; justify-content: center; align-items: center; gap: 8px;
-      width: 100%; background: var(--clr-surface); color: var(--clr-text);
-      font-size: 1rem; font-weight: 600; padding: 14px;
-      border-radius: var(--radius-md); margin-top: 16px;
-      border: 1px solid var(--clr-border);
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      max-width: 300px;
+      background: var(--clr-accent);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 12px;
+      border-radius: var(--radius-md);
+      margin-top: 8px;
+      transition: filter 0.2s;
+      border: none;
     }
-    
+
+    .trailer-btn:active {
+      filter: brightness(0.9);
+    }
+
     /* iOS List View for Torrents */
     .ios-list-group {
       width: 100%;
@@ -785,76 +1588,178 @@
       text-align: left;
       border: 1px solid var(--clr-border);
     }
+
     .ios-list-header {
       padding: 16px 16px 8px;
-      font-size: 1.1rem; font-weight: 700;
+      font-size: 1.1rem;
+      font-weight: 700;
       color: var(--clr-text);
     }
+
     .ios-list-item {
       padding: 16px;
       border-bottom: 1px solid var(--clr-surface-3);
-      display: flex; flex-direction: column; gap: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
-    .ios-list-item:last-child { border-bottom: none; }
-    
+
+    .ios-list-item:last-child {
+      border-bottom: none;
+    }
+
     .torrent-header {
-      display: flex; justify-content: space-between; align-items: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .t-quality { font-size: 1.1rem; font-weight: 700; color: var(--clr-accent); }
-    .t-size { font-size: 0.85rem; color: var(--clr-text-2); font-weight: 500;}
-    
+
+    .t-quality {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--clr-accent);
+    }
+
+    .t-size {
+      font-size: 0.85rem;
+      color: var(--clr-text-2);
+      font-weight: 500;
+    }
+
     .t-stats {
-      display: flex; gap: 16px; font-size: 0.8rem; font-weight: 500;
+      display: flex;
+      gap: 16px;
+      font-size: 0.8rem;
+      font-weight: 500;
     }
-    .t-stat { color: var(--clr-text-2); }
-    .t-val { color: var(--clr-text); margin-left: 4px; }
-    .val-green { color: var(--clr-green); }
-    .val-orange { color: var(--clr-orange); }
+
+    .t-stat {
+      color: var(--clr-text-2);
+    }
+
+    .t-val {
+      color: var(--clr-text);
+      margin-left: 4px;
+    }
+
+    .val-green {
+      color: var(--clr-green);
+    }
+
+    .val-orange {
+      color: var(--clr-orange);
+    }
 
     .t-actions {
-      display: flex; gap: 8px;
+      display: flex;
+      gap: 8px;
     }
+
     .t-btn {
-      flex: 1; text-align: center; padding: 10px;
-      border-radius: var(--radius-sm); font-size: 0.9rem; font-weight: 600;
+      flex: 1;
+      text-align: center;
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 600;
     }
-    .t-btn-primary { background: var(--clr-accent); color: #fff; }
-    .t-btn-primary:active { opacity: 0.8; }
-    .t-btn-secondary { background: var(--clr-surface-2); color: var(--clr-text); }
-    .t-btn-secondary:active { background: var(--clr-surface-3); }
+
+    .t-btn-primary {
+      background: var(--clr-accent);
+      color: #fff;
+    }
+
+    .t-btn-primary:active {
+      opacity: 0.8;
+    }
+
+    .t-btn-secondary {
+      background: var(--clr-surface-2);
+      color: var(--clr-text);
+    }
+
+    .t-btn-secondary:active {
+      background: var(--clr-surface-3);
+    }
 
     /* ── EMPTY / ERROR STATES ── */
     .empty-state {
-      text-align: center; padding: 60px 20px;
+      text-align: center;
+      padding: 60px 20px;
     }
-    .empty-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; }
-    .empty-sub { color: var(--clr-text-2); font-size: 0.95rem; }
+
+    .empty-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .empty-sub {
+      color: var(--clr-text-2);
+      font-size: 0.95rem;
+    }
 
     /* ── SKELETON ── */
     .skeleton-card .card-poster {
       background: var(--clr-surface-2);
       animation: skel-pulse 1.5s infinite;
     }
+
     .skeleton-card .card-title {
-      height: 14px; width: 80%; background: var(--clr-surface-2);
-      border-radius: 4px; margin-top: 8px;
+      height: 14px;
+      width: 80%;
+      background: var(--clr-surface-2);
+      border-radius: 4px;
+      margin-top: 8px;
     }
+
     @keyframes skel-pulse {
-      0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; }
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
+
+      100% {
+        opacity: 1;
+      }
     }
 
     /* ── SMARTPHONE RESPONSIVE OVERRIDES ── */
     @media (max-width: 480px) {
-      .navbar { padding: 0 16px; }
-      .hero { padding: 20px 16px 0; }
-      .main-content { padding: 10px 16px 40px; }
-      
+      .navbar {
+        padding: 0 16px;
+      }
+
+      .hero {
+        padding: 20px 16px 0;
+      }
+
+      .main-content {
+        padding: 10px 16px 40px;
+      }
+
       /* Collapse top navbar elegantly */
-      .nav-logo { font-size: 1.1rem; }
-      .nav-controls { gap: 10px; }
-      .nav-badge { padding: 6px; }
-      #api-badge-label { display: none; } /* Hide "Connected" text, keep green dot to save space */
-      
+      .nav-logo {
+        font-size: 1.1rem;
+      }
+
+      .nav-controls {
+        gap: 10px;
+      }
+
+      .nav-badge {
+        padding: 6px;
+      }
+
+      #api-badge-label {
+        display: none;
+      }
+
+      /* Hide "Connected" text, keep green dot to save space */
+
       /* Genre swipe area fits phone screens better */
       .quick-genres {
         margin: 0 -16px;
@@ -862,17 +1767,28 @@
         padding-right: 16px;
         scroll-padding-left: 16px;
       }
-    }
 
+      /* Mobile override for the CTA banner */
+      .motd-banner {
+        min-height: 360px;
+        margin: 20px 0;
+      }
+
+      .motd-title {
+        font-size: 2rem;
+      }
+    }
   </style>
 </head>
+
 <body>
 
   <!-- ── STARTING SPLASH SCREEN ── -->
   <div id="splash-screen" class="cinematic-splash">
     <div class="splash-aurora"></div>
     <div class="splash-content">
-      <svg class="splash-clap-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <svg class="splash-clap-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+        stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <g class="clap-group-main">
           <g class="clap-group-top">
             <path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z" />
@@ -891,7 +1807,8 @@
   <div id="end-splash" class="cinematic-splash hidden">
     <div class="splash-aurora lock-aurora"></div>
     <div class="splash-content">
-      <svg class="splash-clap-icon end-splash-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <svg class="splash-clap-icon end-splash-icon" fill="none" stroke="currentColor" stroke-linecap="round"
+        stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <g class="clap-group-main">
           <g class="clap-group-top">
             <path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z" />
@@ -910,20 +1827,23 @@
   <div id="auth-screen" class="auth-screen">
     <form class="form" id="login-form">
       <div class="form-title">Welcome,<br><span>sign to watch movies...</span></div>
-      
+
       <div class="input-wrapper">
         <input class="input" id="auth-password" name="password" placeholder="Entry Pass" type="password" required>
         <button type="button" id="toggle-password" class="password-toggle" aria-label="Toggle password visibility">
           <!-- Default SVG: Eye Off -->
-          <svg id="eye-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+          <svg id="eye-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24">
+            </path>
             <line x1="1" y1="1" x2="23" y2="23"></line>
           </svg>
         </button>
       </div>
 
       <div id="auth-feedback" class="auth-feedback"></div>
-      
+
       <button type="submit" class="button-confirm">Let`s go →</button>
     </form>
   </div>
@@ -934,7 +1854,8 @@
       <a href="#" class="nav-logo" id="logo-link">CINE • DEPT</a>
       <div class="nav-controls">
         <button id="refresh-button" class="refresh-button" aria-label="Refresh Movies" title="Refresh">
-          <svg class="refresh-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+          <svg class="refresh-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+            stroke-width="2" viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
             <g class="refresh-group">
               <path d="M3 2v6h6" />
               <path d="M21 12A9 9 0 0 0 6 5.3L3 8" />
@@ -945,7 +1866,8 @@
           </svg>
         </button>
         <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
-          <svg id="icon-sun" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg id="icon-sun" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+            stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <circle cx="12" cy="12" r="4" />
             <path class="sun-ray" d="M12 2v2" />
             <path class="sun-ray" d="m19.07 4.93-1.41 1.41" />
@@ -956,7 +1878,8 @@
             <path class="sun-ray" d="M2 12h2" />
             <path class="sun-ray" d="m4.93 4.93 1.41 1.41" />
           </svg>
-          <svg id="icon-moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg id="icon-moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+            stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
           </svg>
         </button>
@@ -965,7 +1888,8 @@
           <span id="api-badge-label">Connected</span>
         </div>
         <button id="exit-button" class="exit-button" aria-label="Exit / Logout" title="Lock App">
-          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18" height="18" xmlns="http://www.w3.org/2000/svg">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            viewBox="0 0 24 24" width="18" height="18" xmlns="http://www.w3.org/2000/svg">
             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
             <polyline class="logout-arrow" points="16 17 21 12 16 7" />
             <line class="logout-arrow" x1="21" x2="9" y1="12" y2="12" />
@@ -978,12 +1902,14 @@
   <!-- ── HERO / SEARCH ── -->
   <header class="hero">
     <h1 class="ios-large-title">Movies</h1>
-    
+
     <div class="search-container" id="search-container">
       <div class="search-box">
         <span class="search-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="2.5">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
           </svg>
         </span>
         <input type="text" id="search-input" class="search-input" placeholder="Search movies..." autocomplete="off" />
@@ -1003,6 +1929,17 @@
     </div>
   </header>
 
+  <!-- ── MOVIE OF THE DAY BANNER ── -->
+  <section class="motd-banner" id="motd-banner" hidden>
+    <div class="motd-overlay"></div>
+    <div class="motd-content">
+      <span class="motd-label">✯ Absolute Cinema ✯</span>
+      <h2 class="motd-title" id="motd-title">Loading...</h2>
+      <p class="motd-sub" id="motd-sub">Fetching daily masterpiece...</p>
+      <button class="motd-btn" id="motd-btn">View</button>
+    </div>
+  </section>
+
   <!-- ── MAIN CONTENT ── -->
   <main class="main-content">
     <section class="results-section" id="trending-section">
@@ -1013,12 +1950,30 @@
 
       <!-- Loading skeleton -->
       <div class="movies-grid" id="skeleton-grid">
-        <div class="movie-card skeleton-card"><div class="card-poster"></div><div class="card-title"></div></div>
-        <div class="movie-card skeleton-card"><div class="card-poster"></div><div class="card-title"></div></div>
-        <div class="movie-card skeleton-card"><div class="card-poster"></div><div class="card-title"></div></div>
-        <div class="movie-card skeleton-card"><div class="card-poster"></div><div class="card-title"></div></div>
-        <div class="movie-card skeleton-card"><div class="card-poster"></div><div class="card-title"></div></div>
-        <div class="movie-card skeleton-card"><div class="card-poster"></div><div class="card-title"></div></div>
+        <div class="movie-card skeleton-card">
+          <div class="card-poster"></div>
+          <div class="card-title"></div>
+        </div>
+        <div class="movie-card skeleton-card">
+          <div class="card-poster"></div>
+          <div class="card-title"></div>
+        </div>
+        <div class="movie-card skeleton-card">
+          <div class="card-poster"></div>
+          <div class="card-title"></div>
+        </div>
+        <div class="movie-card skeleton-card">
+          <div class="card-poster"></div>
+          <div class="card-title"></div>
+        </div>
+        <div class="movie-card skeleton-card">
+          <div class="card-poster"></div>
+          <div class="card-title"></div>
+        </div>
+        <div class="movie-card skeleton-card">
+          <div class="card-poster"></div>
+          <div class="card-title"></div>
+        </div>
       </div>
 
       <!-- Results grid -->
@@ -1035,16 +1990,168 @@
         <button class="load-more-btn" id="load-more-btn">Load More</button>
       </div>
     </section>
+
+    <!-- ── TESTIMONIALS MARQUEE ── -->
+    <section class="testimonials-section">
+      <h2 class="testimonials-title">What Our Users Say</h2>
+      <div class="marquee-container">
+        <!-- First Track -->
+        <div class="marquee-track">
+          <div class="testimonial-card">
+            <div class="t-card-header">
+              <div class="t-avatar">A</div>
+              <div class="t-user-info">
+                <span class="t-name">Alex D.</span>
+                <span class="t-handle">@alex_dev</span>
+              </div>
+            </div>
+            <div class="t-stars">★★★★★</div>
+            <p class="t-body">"Best app for finding movies directly on my phone! The UI is incredibly smooth and feels
+              totally native."</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="t-card-header">
+              <div class="t-avatar">S</div>
+              <div class="t-user-info">
+                <span class="t-name">Sarah W.</span>
+                <span class="t-handle">@sarahwatch</span>
+              </div>
+            </div>
+            <div class="t-stars">★★★★★</div>
+            <p class="t-body">"The terminal UI for movie details is just mind-blowing. I love the dark mode aesthetic
+              and code animations!"</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="t-card-header">
+              <div class="t-avatar">M</div>
+              <div class="t-user-info">
+                <span class="t-name">Mike R.</span>
+                <span class="t-handle">@miker_99</span>
+              </div>
+            </div>
+            <div class="t-stars">★★★★☆</div>
+            <p class="t-body">"Lightning fast and so easy to use. The direct subtitle download feature is an absolute
+              lifesaver."</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="t-card-header">
+              <div class="t-avatar">E</div>
+              <div class="t-user-info">
+                <span class="t-name">Emma T.</span>
+                <span class="t-handle">@emmat_cine</span>
+              </div>
+            </div>
+            <div class="t-stars">★★★★★</div>
+            <p class="t-body">"A truly cinematic experience right from the splash screen. Simply the best movie browser
+              out there."</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="t-card-header">
+              <div class="t-avatar">J</div>
+              <div class="t-user-info">
+                <span class="t-name">John K.</span>
+                <span class="t-handle">@johnny_k</span>
+              </div>
+            </div>
+            <div class="t-stars">★★★★★</div>
+            <p class="t-body">"I love how I can see the seeders and leechers right away. Makes downloading torrents an
+              absolute breeze."</p>
+          </div>
+        </div>
+
+        <!-- Duplicate Track for Seamless Infinite Scroll -->
+        <div class="marquee-track" aria-hidden="true">
+          <div class="testimonial-card">
+            <div class="t-card-header">
+              <div class="t-avatar">A</div>
+              <div class="t-user-info">
+                <span class="t-name">Alex D.</span>
+                <span class="t-handle">@alex_dev</span>
+              </div>
+            </div>
+            <div class="t-stars">★★★★★</div>
+            <p class="t-body">"Best app for finding movies directly on my phone! The UI is incredibly smooth and feels
+              totally native."</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="t-card-header">
+              <div class="t-avatar">S</div>
+              <div class="t-user-info">
+                <span class="t-name">Sarah W.</span>
+                <span class="t-handle">@sarahwatch</span>
+              </div>
+            </div>
+            <div class="t-stars">★★★★★</div>
+            <p class="t-body">"The terminal UI for movie details is just mind-blowing. I love the dark mode aesthetic
+              and code animations!"</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="t-card-header">
+              <div class="t-avatar">M</div>
+              <div class="t-user-info">
+                <span class="t-name">Mike R.</span>
+                <span class="t-handle">@miker_99</span>
+              </div>
+            </div>
+            <div class="t-stars">★★★★☆</div>
+            <p class="t-body">"Lightning fast and so easy to use. The direct subtitle download feature is an absolute
+              lifesaver."</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="t-card-header">
+              <div class="t-avatar">E</div>
+              <div class="t-user-info">
+                <span class="t-name">Emma T.</span>
+                <span class="t-handle">@emmat_cine</span>
+              </div>
+            </div>
+            <div class="t-stars">★★★★★</div>
+            <p class="t-body">"A truly cinematic experience right from the splash screen. Simply the best movie browser
+              out there."</p>
+          </div>
+          <div class="testimonial-card">
+            <div class="t-card-header">
+              <div class="t-avatar">J</div>
+              <div class="t-user-info">
+                <span class="t-name">John K.</span>
+                <span class="t-handle">@johnny_k</span>
+              </div>
+            </div>
+            <div class="t-stars">★★★★★</div>
+            <p class="t-body">"I love how I can see the seeders and leechers right away. Makes downloading torrents an
+              absolute breeze."</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <!-- ── iOS BOTTOM SHEET MODAL ── -->
+  <!-- ── TERMINAL / CODE-EDITOR MODAL ── -->
   <div class="modal-overlay" id="modal-overlay">
     <div class="modal-card">
-      <div class="drag-indicator"></div>
-      <button class="modal-close-circle" id="modal-close">×</button>
-      <div id="modal-body">
-        <!-- Populated by JS -->
+
+      <!-- Mac-style Window Header -->
+      <div class="editor-header">
+        <div class="editor-dots">
+          <!-- Red dot also closes window -->
+          <div class="editor-dot dot-close" onclick="closeModal()" title="Close Window"></div>
+          <div class="editor-dot dot-min"></div>
+          <div class="editor-dot dot-max"></div>
+        </div>
+        <div class="editor-title">cine_dept_decoder.sh</div>
+        <button class="editor-close-btn" id="modal-close" aria-label="Close window">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+            stroke-linejoin="round" viewBox="0 0 24 24">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
       </div>
+
+      <!-- Content Populated by JS -->
+      <div id="modal-body" class="editor-body"></div>
+
     </div>
   </div>
 
@@ -1060,7 +2167,7 @@
           splash.classList.add('hidden'); // Fades out Splash -> Reveals Auth Screen underneath
           setTimeout(() => splash.remove(), 600);
         }
-      }, 5000); 
+      }, 5000);
     });
 
     // Handle Password Visibility Toggle
@@ -1086,7 +2193,7 @@
     const authScreen = document.getElementById('auth-screen');
 
     // Encrypted string: "Cine.dept87" obfuscated using Base64
-    const VALID_HASH = "Q2luZS5kZXB0ODc="; 
+    const VALID_HASH = "Q2luZS5kZXB0ODc=";
 
     loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -1095,7 +2202,7 @@
       if (btoa(enteredPass) === VALID_HASH) {
         authFeedback.textContent = "Access Granted";
         authFeedback.style.color = "var(--clr-green, #30D158)";
-        
+
         // Wait 1 second so they see "Access Granted" then fade out Auth to reveal App
         setTimeout(() => {
           authScreen.classList.add('hidden');
@@ -1112,7 +2219,7 @@
     const themeBtn = document.getElementById('theme-toggle');
     const iconSun = document.getElementById('icon-sun');
     const iconMoon = document.getElementById('icon-moon');
-    
+
     function updateThemeIcon() {
       const currentTheme = document.documentElement.getAttribute('data-theme');
       // In Light Mode, show Moon (click to switch to Dark)
@@ -1125,14 +2232,14 @@
         iconMoon.style.display = 'none';
       }
     }
-    
+
     // Set initial icon
     updateThemeIcon();
 
     themeBtn.addEventListener('click', () => {
       const currentTheme = document.documentElement.getAttribute('data-theme');
       const targetTheme = currentTheme === 'light' ? 'dark' : 'light';
-      
+
       document.documentElement.setAttribute('data-theme', targetTheme);
       localStorage.setItem('Cine.dept-theme', targetTheme);
       updateThemeIcon();
@@ -1140,7 +2247,7 @@
 
     /* ── CONFIG ── */
     const API_BASE = 'https://yts.bz/api/v2';
-    const API_NEW  = 'https://movies-api.accel.li/api/v2';
+    const API_NEW = 'https://movies-api.accel.li/api/v2';
     const MAGNET_TRACKERS = [
       'udp://open.demonii.com:1337/announce',
       'udp://tracker.openbittorrent.com:80',
@@ -1162,6 +2269,101 @@
       navbar: $('navbar'), sug: $('search-suggestions')
     };
 
+    /* ── HELPER FUNCTIONS ── */
+    const langNames = new Intl.DisplayNames(['en'], { type: 'language' });
+    function getFullLanguageName(code) {
+      if (!code) return '';
+      try {
+        let mappedCode = code.toLowerCase();
+        if (mappedCode === 'cn') mappedCode = 'zh'; // Handles common edge cases
+        if (mappedCode === 'mx') mappedCode = 'es';
+        return langNames.of(mappedCode);
+      } catch (e) {
+        return code.toUpperCase();
+      }
+    }
+
+    function escHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m]));
+    }
+
+    /* ── DIRECT DOWNLOAD SUBTITLES ── */
+    async function downloadEnglishSubtitles(imdbCode, btnElement) {
+      if (!imdbCode) return;
+      const originalText = btnElement.innerText;
+      btnElement.innerText = "Extracting Subtitle...";
+      btnElement.style.opacity = '0.6';
+      btnElement.style.pointerEvents = 'none';
+
+      try {
+        const targetUrl = 'https://yifysubtitles.ch/movie-imdb/' + imdbCode;
+
+        // Multi-proxy approach to bypass blocks / CORS errors securely without a dedicated backend
+        const proxies = [
+          `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(targetUrl)}`,
+          `https://api.allorigins.win/raw?url=${encodeURIComponent(targetUrl)}`,
+          `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`
+        ];
+
+        let html = null;
+        for (const proxy of proxies) {
+          try {
+            const response = await fetch(proxy);
+            if (response.ok) {
+              const text = await response.text();
+              // Check if we hit a block page or the real subtitle page
+              if (text.includes('subtitles') || text.includes('english')) {
+                html = text;
+                break; // We successfully fetched the valid HTML
+              }
+            }
+          } catch (e) {
+            console.log('Proxy failed, trying next fallback...');
+          }
+        }
+
+        if (!html) throw new Error('No proxy succeeded in fetching the data');
+
+        // Parse the raw HTML to extract the exact link
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        const rows = Array.from(doc.querySelectorAll('table tbody tr'));
+        const enRow = rows.find(row => row.innerHTML.includes('flag-icon-en') || row.innerHTML.toLowerCase().includes('english'));
+
+        if (!enRow) throw new Error('English subtitle not found on page');
+
+        const linkElement = enRow.querySelector('a[href^="/subtitles/"]');
+        if (!linkElement) throw new Error('Subtitle link missing');
+
+        const subPath = linkElement.getAttribute('href');
+
+        // Direct .zip download path (yifysubtitles standard structure)
+        const zipUrl = `https://yifysubtitles.ch${subPath.replace('/subtitles/', '/subtitle/')}.zip`;
+
+        // Trigger the direct download
+        const a = document.createElement('a');
+        a.href = zipUrl;
+        a.target = '_blank'; // Opens download directly
+        a.download = '';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        btnElement.innerText = "Download Started!";
+      } catch (error) {
+        console.error("Direct download failed, falling back to page:", error);
+        // Fallback: Ensure the user still gets their subtitles even if web scrapers fail
+        window.open(`https://yifysubtitles.ch/movie-imdb/${imdbCode}`, '_blank');
+        btnElement.innerText = "Opened Page";
+      } finally {
+        setTimeout(() => {
+          btnElement.innerText = originalText;
+          btnElement.style.opacity = '1';
+          btnElement.style.pointerEvents = 'auto';
+        }, 3000);
+      }
+    }
+
     /* ── NAVBAR SCROLL ── */
     window.addEventListener('scroll', () => {
       elements.navbar.classList.toggle('scrolled', window.scrollY > 10);
@@ -1180,7 +2382,7 @@
           if (!res.ok) continue;
           const json = await res.json();
           if (json.status === 'ok') return { movies: json.data.movies || [], total: json.data.movie_count || 0 };
-        } catch {}
+        } catch { }
       }
       throw new Error('API Error');
     }
@@ -1192,7 +2394,7 @@
           const res = await fetch(`${base}/movie_details.json?${params}`);
           const json = await res.json();
           if (json.status === 'ok') return json.data.movie;
-        } catch {}
+        } catch { }
       }
       throw new Error('Details Error');
     }
@@ -1203,20 +2405,16 @@
         if ((await res.json()).status === 'ok') {
           $('api-badge-dot').className = 'badge-dot online'; $('api-badge-label').innerText = 'Connected'; return;
         }
-      } catch {}
+      } catch { }
       $('api-badge-dot').className = 'badge-dot offline'; $('api-badge-label').innerText = 'Offline';
     }
 
     /* ── RENDERERS ── */
-    function escHtml(str) {
-      if (!str) return '';
-      return String(str).replace(/[&<>"']/g, m => ({'&': '&amp;','<': '&lt;','>': '&gt;','"': '&quot; brunâtre',"'": '&#039;'}[m]));
-    }
-
     function renderMovieCard(movie) {
       const genre = (movie.genres || [])[0] || '';
       const rating = movie.rating ? movie.rating.toFixed(1) : '';
-      
+      const language = movie.language ? getFullLanguageName(movie.language) : '';
+
       const card = document.createElement('div');
       card.className = 'movie-card';
       card.onclick = () => openModal(movie.id);
@@ -1226,7 +2424,7 @@
         <div class="card-info">
           <h3 class="card-title">${escHtml(movie.title)}</h3>
           <p class="card-meta">
-            ${movie.year || ''} ${genre ? `· ${escHtml(genre)}` : ''} 
+            ${movie.year || ''} ${language ? `· ${escHtml(language)}` : ''} ${genre ? `· ${escHtml(genre)}` : ''} 
             ${rating ? `<span class="card-rating-inline">★ ${rating}</span>` : ''}
           </p>
         </div>
@@ -1273,50 +2471,104 @@
     async function openModal(id) {
       document.body.style.overflow = 'hidden';
       elements.modalOv.classList.add('active');
-      elements.modalBody.innerHTML = `<div style="text-align:center; padding: 60px; color:var(--clr-text-2);">Loading...</div>`;
-      
+      elements.modalBody.innerHTML = `<div style="text-align:center; padding: 60px; color:var(--clr-text-2); width: 100%;">Executing sequence...</div>`;
+
       try {
         const m = await fetchMovieDetails(id);
         const tr = m.torrents || [];
-        
-        elements.modalBody.innerHTML = `
-          <img src="${m.background_image_original || m.background_image}" class="modal-header-img" onerror="this.style.display='none'" />
-          <div class="modal-content-inner">
-            <img src="${m.medium_cover_image}" class="modal-poster-small" onerror="this.style.display='none'"/>
-            <h2 class="modal-title">${escHtml(m.title)}</h2>
-            <div class="modal-meta-row">
-              ${m.year ? `<span class="modal-meta-chip">${m.year}</span>` : ''}
-              ${m.rating ? `<span class="modal-meta-chip" style="color:var(--clr-orange)">★ ${m.rating}</span>` : ''}
-              ${m.runtime ? `<span class="modal-meta-chip">${m.runtime} min</span>` : ''}
-              ${(m.genres||[]).slice(0,2).map(g => `<span class="modal-meta-chip" style="background:var(--clr-surface-2)">${escHtml(g)}</span>`).join('')}
-            </div>
-            ${m.description_full ? `<p class="modal-summary">${escHtml(m.description_full)}</p>` : ''}
-            ${m.yt_trailer_code ? `<a href="https://youtube.com/watch?v=${m.yt_trailer_code}" target="_blank" class="trailer-btn">▶ Watch Trailer</a>` : ''}
-            
-            <div class="ios-list-group">
-              <div class="ios-list-header">Torrents</div>
-              ${tr.length ? tr.map(t => `
-                <div class="ios-list-item">
-                  <div class="torrent-header">
-                    <span class="t-quality">${escHtml(t.quality)} <span style="font-size:0.7rem; color:var(--clr-text-3)">${t.type}</span></span>
-                    <span class="t-size">${t.size}</span>
-                  </div>
-                  <div class="t-stats">
-                    <span><span class="t-stat">Seeds</span><span class="t-val val-green">${t.seeds}</span></span>
-                    <span><span class="t-stat">Peers</span><span class="t-val val-orange">${t.peers}</span></span>
-                  </div>
-                  <div class="t-actions">
-                    <a href="magnet:?xt=urn:btih:${t.hash}&dn=${encodeURIComponent(m.title)}&tr=${encodeURIComponent(MAGNET_TRACKERS)}" class="t-btn t-btn-primary">Magnet</a>
-                    <a href="${t.url}" class="t-btn t-btn-secondary">Torrent</a>
-                  </div>
-                </div>
-              `).join('') : '<div style="padding:16px; color:var(--clr-text-2)">No torrents available.</div>'}
+
+        elements.modalBody.innerHTML = renderModalContent(m, tr);
+      } catch (e) {
+        elements.modalBody.innerHTML = `<div style="text-align:center; padding: 60px; width: 100%;">Failed to load payload.</div>`;
+      }
+    }
+
+    function renderModalContent(movie, torrents) {
+      const genres = movie.genres || [];
+      const rating = movie.rating ? movie.rating.toFixed(1) : '—';
+      const runtime = movie.runtime ? `${Math.floor(movie.runtime / 60)}h ${movie.runtime % 60}m` : 'Unknown';
+      const language = movie.language ? getFullLanguageName(movie.language) : 'Unknown';
+      const trailerUrl = movie.yt_trailer_code ? `https://youtube.com/watch?v=${movie.yt_trailer_code}` : null;
+
+      const safeTitle = escHtml(movie.title_long || movie.title);
+      const safeSum = escHtml(movie.description_full || movie.summary || 'No summary available.');
+
+      return `
+        <!-- LEFT: Terminal Code Block -->
+        <div class="editor-code">
+          <div class="code-line delay-1"><span class="syn-comment"># Fetching secure payload...</span></div>
+          <div class="code-line delay-2"><span class="syn-comment"># Status: 200 OK</span></div>
+          <br/>
+          <div class="code-line delay-3"><span class="syn-keyword">const</span> movieData = {</div>
+          <div class="code-line delay-4">  <span class="syn-key">title</span><span class="syn-punct">:</span> <span class="syn-string">"${escHtml(movie.title)}"</span><span class="syn-punct">,</span></div>
+          <div class="code-line delay-5">  <span class="syn-key">year</span><span class="syn-punct">:</span> <span class="syn-number">${movie.year || 'null'}</span><span class="syn-punct">,</span></div>
+          <div class="code-line delay-6">  <span class="syn-key">rating</span><span class="syn-punct">:</span> <span class="syn-number">${rating}</span><span class="syn-punct">,</span></div>
+          <div class="code-line delay-7">  <span class="syn-key">runtime</span><span class="syn-punct">:</span> <span class="syn-string">"${runtime}"</span><span class="syn-punct">,</span></div>
+          <div class="code-line delay-8">  <span class="syn-key">language</span><span class="syn-punct">:</span> <span class="syn-string">"${escHtml(language)}"</span><span class="syn-punct">,</span></div>
+          <div class="code-line delay-9">  <span class="syn-key">genres</span><span class="syn-punct">:</span> [<span class="syn-string">"${genres.map(escHtml).join('", "')}"</span>]<span class="syn-punct">,</span></div>
+          <div class="code-line delay-10">  <span class="syn-key">torrent_count</span><span class="syn-punct">:</span> <span class="syn-number">${torrents.length}</span></div>
+          <div class="code-line delay-11">}<span class="syn-punct">;</span></div>
+          <br/>
+          <div class="code-line delay-12"><span class="syn-comment"># Initializing UI render sequence...</span><span class="typing-cursor"></span></div>
+        </div>
+
+        <!-- RIGHT: Visual Panel -->
+        <div class="editor-visuals">
+          <div class="editor-visual-header">
+            <img src="${movie.medium_cover_image}" class="modal-poster-small" onerror="this.style.display='none'"/>
+            <div class="editor-visual-info">
+              <h2 class="modal-title">${safeTitle}</h2>
+              <div class="modal-meta-row" style="justify-content: flex-start;">
+                ${movie.year ? `<span class="modal-meta-chip">${movie.year}</span>` : ''}
+                ${movie.rating ? `<span class="modal-meta-chip" style="color:var(--clr-orange)">★ ${movie.rating}</span>` : ''}
+                <span class="modal-meta-chip">🌐 ${escHtml(language)}</span>
+                ${genres.slice(0, 2).map(g => `<span class="modal-meta-chip" style="background:var(--clr-surface-2)">${escHtml(g)}</span>`).join('')}
+              </div>
+              ${trailerUrl ? `<a href="${trailerUrl}" target="_blank" class="trailer-btn">▶ Watch Trailer</a>` : ''}
             </div>
           </div>
-        `;
-      } catch (e) {
-        elements.modalBody.innerHTML = `<div style="text-align:center; padding: 60px;">Failed to load data.</div>`;
-      }
+          
+          <p class="modal-summary">${safeSum}</p>
+          
+          <div class="ios-list-group">
+            <div class="ios-list-header">Downloads & Extras</div>
+
+            <!-- ── SUBTITLE CARD ── -->
+            ${movie.imdb_code ? `
+            <div class="ios-list-item" style="background: var(--clr-accent-dim);">
+              <div class="torrent-header">
+                <span class="t-quality">English Subtitles <span style="font-size:0.7rem; color:var(--clr-text-3)">[CC]</span></span>
+                <span class="t-size">Official</span>
+              </div>
+              <div class="t-stats">
+                <span><span class="t-stat">Sync</span><span class="t-val val-green">YTS Releases</span></span>
+                <span><span class="t-stat">Format</span><span class="t-val val-orange">.SRT / .ZIP</span></span>
+              </div>
+              <div class="t-actions">
+                <button onclick="downloadEnglishSubtitles('${movie.imdb_code}', this)" class="t-btn t-btn-secondary" style="border: 1px solid var(--clr-border); width: 100%; cursor: pointer;">Get English Subtitles</button>
+              </div>
+            </div>
+            ` : ''}
+            
+            ${torrents.length ? torrents.map(t => `
+              <div class="ios-list-item">
+                <div class="torrent-header">
+                  <span class="t-quality">${escHtml(t.quality)} <span style="font-size:0.7rem; color:var(--clr-text-3)">${t.type}</span></span>
+                  <span class="t-size">${t.size}</span>
+                </div>
+                <div class="t-stats">
+                  <span><span class="t-stat">Seeds</span><span class="t-val val-green">${t.seeds}</span></span>
+                  <span><span class="t-stat">Peers</span><span class="t-val val-orange">${t.peers}</span></span>
+                </div>
+                <div class="t-actions">
+                  <a href="magnet:?xt=urn:btih:${t.hash}&dn=${encodeURIComponent(movie.title)}&tr=${encodeURIComponent(MAGNET_TRACKERS)}" class="t-btn t-btn-primary">Magnet</a>
+                  <a href="${t.url}" class="t-btn t-btn-secondary">Torrent</a>
+                </div>
+              </div>
+            `).join('') : '<div style="padding:16px; color:var(--clr-text-2)">No torrents available.</div>'}
+          </div>
+        </div>
+      `;
     }
 
     function closeModal() {
@@ -1339,7 +2591,7 @@
     elements.searchInp.oninput = e => {
       const val = e.target.value.toLowerCase();
       if (!val) return elements.sug.classList.remove('visible');
-      const match = POPULAR_SEARCHES.filter(s => s.toLowerCase().includes(val)).slice(0,4);
+      const match = POPULAR_SEARCHES.filter(s => s.toLowerCase().includes(val)).slice(0, 4);
       if (!match.length) return elements.sug.classList.remove('visible');
       elements.sug.innerHTML = match.map(s => `<div class="suggestion-item">🔍 ${escHtml(s)}</div>`).join('');
       elements.sug.classList.add('visible');
@@ -1367,8 +2619,58 @@
       elements.searchInp.value = ''; state.query = ''; state.genre = 'Action';
       document.querySelectorAll('.genre-pill').forEach(p => p.classList.remove('active'));
       document.querySelector('[data-genre="Action"]').classList.add('active');
-      window.scrollTo(0,0); doSearch(false);
+      window.scrollTo(0, 0); doSearch(false);
     };
+
+    /* ── RANDOM GREAT MOVIE LOGIC (Absolute Cinema) ── */
+    async function loadMovieOfTheDay() {
+      try {
+        // Fetch a random page (1 to 5) of highly rated movies (8.0+ rating)
+        const randomPage = Math.floor(Math.random() * 5) + 1;
+        const params = new URLSearchParams({
+          limit: 20,
+          page: randomPage,
+          minimum_rating: 8.0,
+          sort_by: 'rating'
+        });
+
+        let movie = null;
+
+        // Try APIs to fetch the highly rated list
+        for (const base of [API_NEW, API_BASE]) {
+          try {
+            const res = await fetch(`${base}/list_movies.json?${params}`);
+            if (!res.ok) continue;
+            const json = await res.json();
+            if (json.status === 'ok' && json.data.movies && json.data.movies.length > 0) {
+              const movies = json.data.movies;
+              // Pick a completely random movie from this highly-rated payload
+              movie = movies[Math.floor(Math.random() * movies.length)];
+              break;
+            }
+          } catch { }
+        }
+
+        if (movie) {
+          const banner = document.getElementById('motd-banner');
+          const bgImg = movie.background_image_original || movie.background_image || movie.large_cover_image;
+
+          banner.style.backgroundImage = `url('${bgImg}')`;
+          document.getElementById('motd-title').textContent = movie.title;
+
+          const language = movie.language ? getFullLanguageName(movie.language) : '';
+          const subDetails = [movie.year, language, `★ ${movie.rating}`].filter(Boolean).join(' • ');
+          document.getElementById('motd-sub').textContent = subDetails;
+
+          const btn = document.getElementById('motd-btn');
+          btn.onclick = () => openModal(movie.id);
+
+          banner.hidden = false;
+        }
+      } catch (err) {
+        console.error("Failed to load random great movie", err);
+      }
+    }
 
     /* ── REFRESH LOGIC ── */
     document.getElementById('refresh-button').addEventListener('click', () => {
@@ -1385,7 +2687,7 @@
       const eyeIcon = document.getElementById('eye-icon');
 
       // 1. Scroll to top instantly
-      window.scrollTo(0,0);
+      window.scrollTo(0, 0);
 
       // 2. Show the unique ending splash screen
       endSplash.classList.remove('hidden');
@@ -1396,9 +2698,9 @@
         authInput.type = 'password';
         authFeedback.textContent = '';
         eyeIcon.innerHTML = `<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>`;
-        
+
         authScreen.classList.remove('hidden');
-        
+
         // Hide the ending splash to transition smoothly back to Password page
         endSplash.classList.add('hidden');
       }, 2500);
@@ -1407,8 +2709,10 @@
     /* INIT */
     checkApi();
     doSearch(false);
+    loadMovieOfTheDay();
     setInterval(checkApi, 300000);
 
   </script>
 </body>
+
 </html>
